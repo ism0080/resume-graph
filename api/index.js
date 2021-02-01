@@ -18,4 +18,10 @@ export const config = {
   }
 }
 
-export default server.createHandler({ path: '/api' })
+export default server.createHandler({
+  path: '/api',
+  cors: {
+    origin: '*',
+    credentials: false
+  }
+})
