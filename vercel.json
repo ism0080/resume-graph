@@ -1,7 +1,7 @@
 {
     "headers": [
         {
-            "source": "(.*)",
+            "source": ".*",
             "headers": [
                 {
                     "key": "Access-Control-Allow-Credentials",
@@ -20,14 +20,6 @@
                     "value": "Content-Type, Authorization"
                 }
             ]
-        }
-    ],
-    "routes": [
-        {
-            "src": "(.*)",
-            "headers": {
-                "Access-Control-Allow-Origin": "*"
-            }
         }
     ]
 }
