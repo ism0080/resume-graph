@@ -3,6 +3,7 @@ import Cors from 'micro-cors'
 import { typeDefs } from './schemas'
 import { resolvers } from './resolvers'
 
+const cors = Cors()
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -12,14 +13,12 @@ const server = new ApolloServer({
   })
 })
 
-const cors = Cors()
-
 export const config = {
   api: {
     bodyParser: false
   }
 }
 
-const handler = server.createHandler()
+const handler = server.createHandler({ path: '/api' })
 
 export default cors(handler)
