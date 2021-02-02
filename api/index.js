@@ -1,5 +1,4 @@
-const cors = require('micro-cors')()
-import { ApolloServer } from 'apollo-server-micro'
+import { ApolloServer } from 'apollo-server-lambda'
 
 import { typeDefs } from './schemas'
 import { resolvers } from './resolvers'
@@ -19,5 +18,9 @@ export const config = {
   }
 }
 
-const handler = server.createHandler() // highlight-line
-module.exports = cors((req, res) => (req.method === 'OPTIONS' ? res.end() : handler(req, res)))
+export default server.createHandler({
+  cors: {
+    origin: '*',
+    credentials: true
+  }
+})
