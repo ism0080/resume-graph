@@ -1,5 +1,5 @@
-import { ApolloServer } from 'apollo-server-lambda'
-
+import { ApolloServer } from 'apollo-server-micro'
+import Cors from 'micro-cors'
 import { typeDefs } from './schemas'
 import { resolvers } from './resolvers'
 
@@ -12,15 +12,14 @@ const server = new ApolloServer({
   })
 })
 
+const cors = Cors()
+
 export const config = {
   api: {
     bodyParser: false
   }
 }
 
-export default server.createHandler({
-  cors: {
-    origin: '*',
-    credentials: true
-  }
-})
+const handler = server.createHandler()
+
+export default cors(handler)
