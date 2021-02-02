@@ -19,6 +19,10 @@ export const config = {
   }
 }
 
-const handler = server.createHandler({ path: '/api' })
-
-export default cors(handler)
+export default cors((req, res) => {
+  if (req.method === 'OPTIONS') {
+    res.end()
+    return
+  }
+  return server.createHandler({ path: '/api' })(req, res)
+})
